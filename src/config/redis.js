@@ -31,8 +31,6 @@ if (useRedis) {
   );
 }
 
-/* ---------- SAFE HELPERS ---------- */
-
 export async function get(key) {
   try {
     if (!redisClient.isOpen) return null;
@@ -49,6 +47,24 @@ export async function setEx(key, ttl, value) {
     await redisClient.set(key, value, { EX: ttl });
   } catch (err) {
     console.error("Redis setEx error", err);
+  }
+}
+
+export async function del(key) {
+  try {
+    if (!redisClient.isOpen) return;
+    return await redisClient.del(key);
+  } catch (err) {
+    console.error("Redis del error", err);
+  }
+}
+
+export async function flushDb() {
+  try {
+    if (!redisClient.isOpen) return;
+    return await redisClient.flushDb();
+  } catch (err) {
+    console.error("Redis flushDb error", err);
   }
 }
 

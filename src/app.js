@@ -1,5 +1,5 @@
 import express from "express";
-import ratelimiter from "./middleware/ratelimiter.js";
+import ratelimiter from "./middleware/rateLimiter.js";
 import security from "./middleware/security.js";
 import cache from "./middleware/cache.js";
 import proxyRoutes from "./routes/proxy.routes.js";
